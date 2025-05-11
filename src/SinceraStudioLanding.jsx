@@ -84,7 +84,9 @@ export default function SinceraStudioLanding() {
         </motion.h2>
 
         <div className="my-10 w-full flex justify-center">
-          <Hero3D disableControls={isMobile} />
+          <div style={{ pointerEvents: "none" }}>
+            <Hero3D disableControls={isMobile} />
+          </div>
         </div>
 
         <motion.p
