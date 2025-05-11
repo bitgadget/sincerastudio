@@ -26,6 +26,8 @@ const stagger = {
   }),
 };
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
 export default function SinceraStudioLanding() {
   return (
     <main className="min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
@@ -82,7 +84,7 @@ export default function SinceraStudioLanding() {
         </motion.h2>
 
         <div className="my-10 w-full flex justify-center">
-          <Hero3D />
+          <Hero3D disableControls={isMobile} />
         </div>
 
         <motion.p
