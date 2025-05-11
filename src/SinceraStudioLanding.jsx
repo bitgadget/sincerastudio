@@ -329,11 +329,29 @@ export default function SinceraStudioLanding() {
               tags: ["Prototipo", "Engineering"],
             },
             {
-            title: "Scultura Generativa",
-            desc: "Opera artistica stampata in PLA nero, progettazione algoritmica.",
-            image: "/portfolio/scultura.png",
-            tags: ["Arte", "3D Print"],
-      }
+              title: "Scultura Generativa",
+              desc: "Opera artistica stampata in PLA nero, progettazione algoritmica.",
+              image: "/portfolio/scultura.png",
+              tags: ["Arte", "3D Print"],
+            },
+            {
+              title: "Portachiavi Personalizzato",
+              desc: "Portachiavi con logo aziendale stampato in 3D, colori a scelta.",
+              image: "/portfolio/portachiavi.png",
+              tags: ["Gadget", "3D Print", "Branding"],
+            },
+            {
+              title: "Scritta 3D Personalizzata",
+              desc: "Scritte e loghi 3D per eventi, vetrine o desk, completamente personalizzabili.",
+              image: "/portfolio/scritta3d.png",
+              tags: ["Gadget", "3D Print", "Branding"],
+            },
+            {
+              title: "Packaging Rigido Personalizzato",
+              desc: "Scatole e confezioni rigide stampate in 3D, su misura per il tuo prodotto.",
+              image: "/portfolio/packaging.png",
+              tags: ["Packaging", "3D Print", "Personalizzato"],
+            },
           ].map((proj, i) => (
             <motion.div
               key={proj.title}
