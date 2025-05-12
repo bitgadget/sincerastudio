@@ -388,6 +388,57 @@ export default function SinceraStudioLanding() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section
+        id="testimonials"
+        className="relative z-10 px-8 py-24 max-w-4xl mx-auto text-center"
+      >
+        <motion.h3
+          className="text-3xl font-bold mb-8"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          Cosa dicono di noi
+        </motion.h3>
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            {
+              name: "Marco Rossi",
+              company: "Tech Solutions",
+              text: "Servizio impeccabile, prototipi perfetti e consegna rapidissima. Consigliatissimi!",
+            },
+            {
+              name: "Sara Bianchi",
+              company: "Design Hub",
+              text: "Grande attenzione al dettaglio e supporto tecnico in ogni fase del progetto.",
+            },
+          ].map((t, i) => (
+            <motion.div
+              key={t.name}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 flex flex-col items-center"
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              custom={i + 1}
+              viewport={{ once: true }}
+            >
+              {/* Avatar generico */}
+              <div className="w-16 h-16 rounded-full bg-neutral-800 flex items-center justify-center mb-4">
+                <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+                  <circle cx="16" cy="12" r="7" fill="#bfff00" />
+                  <rect x="6" y="22" width="20" height="8" rx="4" fill="#bfff00" />
+                </svg>
+              </div>
+              <p className="text-neutral-300 italic mb-3">"{t.text}"</p>
+              <div className="font-semibold text-[#eaff00]">{t.name}</div>
+              <div className="text-neutral-400 text-sm">{t.company}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section
         id="faq"
@@ -431,6 +482,84 @@ export default function SinceraStudioLanding() {
               </p>
             </details>
           ))}
+        </div>
+      </section>
+
+      {/* Contatti */}
+      <section
+        id="contatti"
+        className="relative z-10 px-8 py-24 max-w-3xl mx-auto text-center"
+      >
+        <motion.h3
+          className="text-3xl font-bold mb-6"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          Contattaci
+        </motion.h3>
+        <motion.p
+          className="mb-8 text-neutral-300"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          custom={2}
+          viewport={{ once: true }}
+        >
+          Vuoi un preventivo, una consulenza o semplicemente saperne di più?<br />
+          Scrivici a <a href="mailto:info@sincerastudio.it" className="underline text-[#eaff00]">info@sincerastudio.it</a>
+        </motion.p>
+        <form className="flex flex-col gap-4 items-center">
+          <input
+            type="text"
+            name="nome"
+            placeholder="Nome"
+            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
+            required
+          />
+          <textarea
+            name="messaggio"
+            placeholder="Messaggio"
+            rows={5}
+            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
+            required
+          />
+          <button
+            type="submit"
+            className="mt-4 rounded-md font-semibold px-8 py-3 text-neutral-900"
+            style={{ background: NEON }}
+          >
+            Invia richiesta
+          </button>
+        </form>
+        {/* Bottoni WhatsApp e Telegram */}
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="https://wa.me/391234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#25D366] text-neutral-900 font-semibold hover:bg-[#1ebe57] transition"
+          >
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 32 32"><path d="M16.002 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.46 1.74 6.38L3.2 28.8l6.62-1.71c1.85 1.01 3.94 1.54 6.18 1.54h.01c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.98-.53-5.68-1.53l-.41-.24-3.93 1.02 1.05-3.83-.27-.39c-1.09-1.59-1.67-3.45-1.67-5.37 0-5.36 4.36-9.72 9.72-9.72s9.72 4.36 9.72 9.72-4.36 9.72-9.72 9.72zm5.34-7.33c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.14-1.23-.45-2.34-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.14.19 2.03 3.1 4.93 4.23.69.3 1.23.48 1.65.62.69.22 1.32.19 1.81.12.55-.08 1.7-.7 1.94-1.37.24-.67.24-1.24.17-1.37-.07-.13-.26-.21-.55-.35z"/></svg>
+            WhatsApp
+          </a>
+          <a
+            href="https://t.me/tuonicktelegram"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#229ED9] text-white font-semibold hover:bg-[#1787b7] transition"
+          >
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 32 32"><path d="M27.43 6.62c-.32-.27-.77-.34-1.15-.19L5.13 14.36c-.41.16-.68.56-.68 1.01.01.45.29.84.7.99l5.13 1.83 2.01 6.13c.13.39.48.66.89.66h.01c.41 0 .77-.27.89-.66l2.01-6.13 5.13-1.83c.41-.15.69-.54.7-.99.01-.45-.27-.85-.68-1.01zm-6.47 4.47l-2.96 2.96c-.13.13-.2.3-.2.48v4.13c0 .27.22.49.49.49s.49-.22.49-.49v-3.81l2.7-2.7c.19-.19.19-.5 0-.69-.19-.19-.5-.19-.69 0z"/></svg>
+            Telegram
+          </a>
         </div>
       </section>
 
