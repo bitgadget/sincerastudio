@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Workflow from "./components/Workflow";
 import Hero3D from "./components/Hero3D";
+import { useState } from "react";
 
 import {
   ArrowUpRight,
@@ -9,10 +10,10 @@ import {
   Printer,
   PackageSearch,
   ChevronDown,
+  Calendar as CalendarIcon,
 } from "lucide-react";
 
 const NEON = "#eaff00";
-
 const stagger = {
   hidden: { opacity: 0, y: 40 },
   visible: (i = 1) => ({
@@ -29,6 +30,10 @@ const stagger = {
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
 export default function SinceraStudioLanding() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <main className="min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
       {/* Neon Glow */}
@@ -362,7 +367,15 @@ export default function SinceraStudioLanding() {
               custom={i + 1}
               viewport={{ once: true }}
             >
-              <img src={proj.image} alt={proj.title} className="w-full h-40 object-contain bg-neutral-800" />
+              <img
+                src={proj.image}
+                alt={proj.title}
+                className="w-full h-40 object-contain bg-neutral-800 cursor-pointer transition hover:scale-105"
+                onClick={() => {
+                  setLightboxImg(proj.image);
+                  setLightboxOpen(true);
+                }}
+              />
               <div className="p-5">
                 <h4 className="text-lg font-semibold">{proj.title}</h4>
                 <p className="mt-2 text-neutral-400 text-sm">{proj.desc}</p>
@@ -439,10 +452,133 @@ export default function SinceraStudioLanding() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Contatti */}
+      <section
+        id="contatti"
+        className="relative z-10 px-8 py-24 max-w-3xl mx-auto text-center"
+      >
+        <motion.h3
+          className="text-4xl font-bold mb-3 neon-blink"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          Parliamo del tuo prossimo progetto
+        </motion.h3>
+        <motion.p
+          className="mb-12 text-neutral-300 text-lg"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          custom={2}
+          viewport={{ once: true }}
+        >
+          Dal concept alla produzione: siamo pronti ad ascoltare la tua idea e trasformarla in realtà.
+        </motion.p>
+        <div className="flex justify-center mb-12">
+          <motion.div
+            className="w-full max-w-xl rounded-2xl border-2 border-[#eaff00] shadow-[0_0_32px_#eaff00cc] bg-neutral-900/80 p-10 flex flex-col items-center transition hover:shadow-[0_0_56px_#eaff00]"
+            whileHover={{ scale: 1.03 }}
+          >
+            <div className="mb-4 text-5xl text-[#eaff00]">
+              <PackageSearch size={56} strokeWidth={2.5} />
+            </div>
+            <div className="font-semibold text-2xl mb-4">Richiedi un preventivo</div>
+            <button
+              onClick={() => setShowModal(true)}
+              className="mt-2 rounded-md font-semibold px-10 py-4 text-xl text-neutral-900 bg-[#eaff00] shadow-[0_0_16px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_32px_#eaff00] transition"
+            >
+              Compila il form
+            </button>
+          </motion.div>
+        </div>
+        {/* Contatto diretto */}
+        <div className="mb-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="mailto:info@sincerastudio.it"
+            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#eaff00] text-neutral-900 font-semibold shadow-[0_0_12px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_24px_#eaff00] transition"
+          >
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 7 8-7V18z"/></svg>
+            Email
+          </a>
+          <a
+            href="https://wa.me/391234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#25D366] text-neutral-900 font-semibold shadow-[0_0_12px_#25D366cc] hover:bg-[#1ebe57] hover:shadow-[0_0_24px_#25D366] transition"
+          >
+            WhatsApp
+          </a>
+          <a
+            href="https://t.me/tuonicktelegram"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#229ED9] text-white font-semibold shadow-[0_0_12px_#229ED9cc] hover:bg-[#1787b7] hover:shadow-[0_0_24px_#229ED9] transition"
+          >
+            Telegram
+          </a>
+        </div>
+        {/* CTA finale */}
+        <div className="mt-12 text-neutral-400 text-base">
+          Non sai da dove iniziare? <span className="text-[#eaff00] font-semibold">Scrivici anche solo per un consiglio!</span>
+        </div>
+        {/* Modal Form Preventivo */}
+        {showModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setShowModal(false)}>
+            <form
+              className="bg-neutral-900 rounded-xl p-8 max-w-md w-full border-2 border-[#eaff00] shadow-[0_0_32px_#eaff00cc] relative"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-3 right-4 text-2xl text-[#eaff00] font-bold"
+                onClick={() => setShowModal(false)}
+                type="button"
+              >
+                &times;
+              </button>
+              <div className="mb-4 text-xl font-bold text-[#eaff00]">Richiedi un preventivo</div>
+              <input
+                type="text"
+                name="nome"
+                placeholder="Nome"
+                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
+                required
+              />
+              <textarea
+                name="messaggio"
+                placeholder="Descrivi la tua richiesta"
+                rows={4}
+                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
+                required
+              />
+              <input
+                type="file"
+                name="allegato"
+                className="w-full mb-3 text-neutral-400"
+              />
+              <button
+                type="submit"
+                className="w-full rounded-md font-semibold px-6 py-2 text-neutral-900 bg-[#eaff00] shadow-[0_0_12px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_24px_#eaff00] transition"
+              >
+                Invia richiesta
+              </button>
+            </form>
+          </div>
+        )}
+      </section>
+
+      {/* Domande frequenti SPOSTATE QUI */}
       <section
         id="faq"
-        className="relative z-10 px-8 py-24 bg-neutral-950/50 backdrop-blur"
+        className="relative z-10 px-8 py-24 bg-neutral-950/50 backdrop-blur max-w-3xl mx-auto"
       >
         <motion.h3
           className="text-3xl font-bold text-center"
@@ -485,88 +621,32 @@ export default function SinceraStudioLanding() {
         </div>
       </section>
 
-      {/* Contatti */}
-      <section
-        id="contatti"
-        className="relative z-10 px-8 py-24 max-w-3xl mx-auto text-center"
-      >
-        <motion.h3
-          className="text-3xl font-bold mb-6"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          Contattaci
-        </motion.h3>
-        <motion.p
-          className="mb-8 text-neutral-300"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          custom={2}
-          viewport={{ once: true }}
-        >
-          Vuoi un preventivo, una consulenza o semplicemente saperne di più?<br />
-          Scrivici a <a href="mailto:info@sincerastudio.it" className="underline text-[#eaff00]">info@sincerastudio.it</a>
-        </motion.p>
-        <form className="flex flex-col gap-4 items-center">
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
-            required
-          />
-          <textarea
-            name="messaggio"
-            placeholder="Messaggio"
-            rows={5}
-            className="w-full max-w-md px-4 py-3 rounded bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:border-[#eaff00] transition"
-            required
-          />
-          <button
-            type="submit"
-            className="mt-4 rounded-md font-semibold px-8 py-3 text-neutral-900"
-            style={{ background: NEON }}
-          >
-            Invia richiesta
-          </button>
-        </form>
-        {/* Bottoni WhatsApp e Telegram */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="https://wa.me/391234567890"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#25D366] text-neutral-900 font-semibold hover:bg-[#1ebe57] transition"
-          >
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 32 32"><path d="M16.002 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.46 1.74 6.38L3.2 28.8l6.62-1.71c1.85 1.01 3.94 1.54 6.18 1.54h.01c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.98-.53-5.68-1.53l-.41-.24-3.93 1.02 1.05-3.83-.27-.39c-1.09-1.59-1.67-3.45-1.67-5.37 0-5.36 4.36-9.72 9.72-9.72s9.72 4.36 9.72 9.72-4.36 9.72-9.72 9.72zm5.34-7.33c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.14-1.23-.45-2.34-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.14.19 2.03 3.1 4.93 4.23.69.3 1.23.48 1.65.62.69.22 1.32.19 1.81.12.55-.08 1.7-.7 1.94-1.37.24-.67.24-1.24.17-1.37-.07-.13-.26-.21-.55-.35z"/></svg>
-            WhatsApp
-          </a>
-          <a
-            href="https://t.me/tuonicktelegram"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#229ED9] text-white font-semibold hover:bg-[#1787b7] transition"
-          >
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 32 32"><path d="M27.43 6.62c-.32-.27-.77-.34-1.15-.19L5.13 14.36c-.41.16-.68.56-.68 1.01.01.45.29.84.7.99l5.13 1.83 2.01 6.13c.13.39.48.66.89.66h.01c.41 0 .77-.27.89-.66l2.01-6.13 5.13-1.83c.41-.15.69-.54.7-.99.01-.45-.27-.85-.68-1.01zm-6.47 4.47l-2.96 2.96c-.13.13-.2.3-.2.48v4.13c0 .27.22.49.49.49s.49-.22.49-.49v-3.81l2.7-2.7c.19-.19.19-.5 0-.69-.19-.19-.5-.19-.69 0z"/></svg>
-            Telegram
-          </a>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="relative z-10 px-8 py-10 text-center text-neutral-600 text-sm">
         © {new Date().getFullYear()} Sincera Studio — Tutti i diritti riservati
       </footer>
+
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+          onClick={() => setLightboxOpen(false)}
+          style={{ cursor: "zoom-out" }}
+        >
+          <img
+            src={lightboxImg}
+            alt="Anteprima progetto"
+            className="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-4 border-[#eaff00]"
+            onClick={e => e.stopPropagation()}
+          />
+          <button
+            className="absolute top-8 right-8 text-white text-3xl font-bold"
+            onClick={() => setLightboxOpen(false)}
+            aria-label="Chiudi"
+          >
+            &times;
+          </button>
+        </div>
+      )}
     </main>
   );
 }
