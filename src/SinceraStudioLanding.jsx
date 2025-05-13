@@ -35,7 +35,7 @@ export default function SinceraStudioLanding() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <main className="min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
+    <main className="pt-24 min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
       {/* Neon Glow */}
       <div className="pointer-events-none fixed inset-0 flex items-center justify-center">
         <div
@@ -45,7 +45,7 @@ export default function SinceraStudioLanding() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
+      <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-neutral-900 bg-opacity-95 border-b border-neutral-800">
         <h1 className="font-script text-4xl" style={{ color: NEON }}>
           SINCERA
           <span className="text-base block -mt-2 font-normal tracking-widest text-white/90">
@@ -152,6 +152,7 @@ export default function SinceraStudioLanding() {
           viewport={{ once: true }}
         >
           Dalla progettazione alla produzione: soluzioni su misura per ogni esigenza, con tecnologie all’avanguardia e attenzione artigianale al dettaglio.
+          Utilizziamo materiali di alta qualità come <b>PLA</b> (biodegradabile), <b>PETG</b> (resistente e flessibile), <b>TPU</b> (elastico), e su richiesta <b>metallo</b>, <b>nylon</b> e <b>compositi</b>, per garantire resistenza, precisione e finiture professionali su ogni progetto.
         </motion.p>
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
@@ -370,11 +371,13 @@ export default function SinceraStudioLanding() {
               <img
                 src={proj.image}
                 alt={proj.title}
+                loading="lazy"
                 className="w-full h-40 object-contain bg-neutral-800 cursor-pointer transition hover:scale-105"
                 onClick={() => {
                   setLightboxImg(proj.image);
                   setLightboxOpen(true);
                 }}
+                style={{ backgroundImage: "url('/placeholder.png')", backgroundSize: "cover", backgroundPosition: "center" }}
               />
               <div className="p-5">
                 <h4 className="text-lg font-semibold">{proj.title}</h4>
