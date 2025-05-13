@@ -33,6 +33,7 @@ export default function SinceraStudioLanding() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImg, setLightboxImg] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <main className="pt-24 min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
@@ -49,9 +50,10 @@ export default function SinceraStudioLanding() {
         <h1 className="font-script text-4xl" style={{ color: NEON }}>
           SINCERA
           <span className="text-base block -mt-2 font-normal tracking-widest text-white/90">
-              STUDIO
+            STUDIO
           </span>
         </h1>
+        {/* Desktop menu */}
         <nav className="hidden md:flex gap-10 text-sm">
           <a href="#servizi" className="hover:text-white/90 transition">
             Servizi
@@ -66,7 +68,64 @@ export default function SinceraStudioLanding() {
             FAQ
           </a>
         </nav>
-        <button className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-6 py-2 text-sm hover:border-white/60 transition">
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <button
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-4 py-2 text-sm hover:border-white/60 transition"
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            aria-label="Apri menu"
+          >
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24">
+              <rect x="4" y="6" width="16" height="2" rx="1" fill="#eaff00"/>
+              <rect x="4" y="11" width="16" height="2" rx="1" fill="#eaff00"/>
+              <rect x="4" y="16" width="16" height="2" rx="1" fill="#eaff00"/>
+            </svg>
+          </button>
+          {/* Dropdown menu mobile con chiusura al click fuori */}
+          {mobileMenuOpen && (
+            <div
+              className="fixed inset-0 z-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <div
+                className="absolute top-[64px] left-0 w-full bg-neutral-900 border-b border-neutral-800 shadow-lg animate-fade-in-down"
+                onClick={e => e.stopPropagation()}
+              >
+                <nav className="flex flex-col py-4 px-8 gap-2 text-base items-end">
+                  <a
+                    href="#servizi"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Servizi
+                  </a>
+                  <a
+                    href="#workflow"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Workflow
+                  </a>
+                  <a
+                    href="#materiali"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Materiali
+                  </a>
+                  <a
+                    href="#faq"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    FAQ
+                  </a>
+                </nav>
+              </div>
+            </div>
+          )}
+        </div>
+        <button className="hidden md:inline-flex items-center gap-2 rounded-full border border-neutral-700 px-6 py-2 text-sm hover:border-white/60 transition">
           Contattaci <ArrowUpRight size={16} />
         </button>
       </header>
@@ -152,7 +211,7 @@ export default function SinceraStudioLanding() {
           viewport={{ once: true }}
         >
           Dalla progettazione alla produzione: soluzioni su misura per ogni esigenza, con tecnologie all’avanguardia e attenzione artigianale al dettaglio.
-          Utilizziamo materiali di alta qualità come <b>PLA</b> (biodegradabile), <b>PETG</b> (resistente e flessibile), <b>TPU</b> (elastico), e su richiesta <b>metallo</b>, <b>nylon</b> e <b>compositi</b>, per garantire resistenza, precisione e finiture professionali su ogni progetto.
+          Utilizziamo materiali di alta qualità come <b>PLA</b> (biodegradabile), <b>PETG</b> (resistente e flessibile), <b>TPU</b> (elastico), e su richiesta <b>metallo</b>, <b>nylon</b> e <b>compositi</b>, per garantire resistenza, precisione e finiture professionali su ogni progetto. Offriamo anche servizio di assemblaggio.
         </motion.p>
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
@@ -177,8 +236,8 @@ export default function SinceraStudioLanding() {
               icon: <Lightbulb size={32} />,
             },
             {
-              title: "Post-processing & finiture",
-              desc: "Carteggiatura, verniciatura, metallizzazione e assemblaggio",
+              title: "Assemblaggio",
+              desc: "Montaggio e assemblaggio di parti stampate per prototipi e prodotti finiti.",
               icon: <ArrowUpRight size={32} />,
             },
             {
@@ -605,6 +664,26 @@ export default function SinceraStudioLanding() {
             {
               q: "È possibile firmare un NDA?",
               a: "Assolutamente: la protezione della proprietà intellettuale è priorità.",
+            },
+            {
+              q: "Posso richiedere una consulenza gratuita?",
+              a: "Certo! Puoi contattarci tramite il form, email o WhatsApp per una prima consulenza senza impegno.",
+            },
+            {
+              q: "Che materiali posso scegliere per la stampa?",
+              a: "I principali sono PLA, PETG, TPU. Su richiesta anche metallo, nylon e compositi. Ti aiutiamo a scegliere il materiale più adatto.",
+            },
+            {
+              q: "Fate anche post-produzione e finitura?",
+              a: "Non effettuiamo verniciatura o metallizzazione, ma offriamo servizio di assemblaggio delle parti stampate.",
+            },
+            {
+              q: "Posso stampare un solo pezzo?",
+              a: "Sì, realizziamo anche singoli prototipi o pezzi unici, oltre a piccole serie.",
+            },
+            {
+              q: "Effettuate spedizioni in tutta Italia?",
+              a: "Sì, spediamo ovunque in Italia tramite corriere espresso.",
             },
           ].map((item, i) => (
             <details
