@@ -114,12 +114,29 @@ export default function SinceraStudioLanding() {
                     Materiali
                   </a>
                   <a
+                    href="#portfolio"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Portfolio
+                  </a>
+                  <a
                     href="#faq"
                     className="py-2 hover:text-[#eaff00] transition"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     FAQ
                   </a>
+                  <button
+                    className="py-2 text-right hover:text-[#eaff00] transition"
+                    style={{ background: "none", border: "none" }}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowModal(true);
+                    }}
+                  >
+                    Preventivo
+                  </button>
                 </nav>
               </div>
             </div>
