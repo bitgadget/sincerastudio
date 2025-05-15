@@ -1,0 +1,112 @@
+import { useState, useEffect } from "react";
+import Papa from "papaparse";
+
+export default function Blog() {
+  const [posts, setPosts] = useState([]);
+  const [selected, setSelected] = useState(null);
+  // Stato per mostrare solo l’anteprima
+  const previewCount = 3;
+
+  useEffect(() => {
+    fetch("/blog.csv")
+      .then((res) => res.text())
+      .then((text) => {
+        Papa.parse(text, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => setPosts(results.data),
+        });
+      });
+  }, []);
+
+  if (selected) {
+    return (
+      <section id="blog" className="relative z-10 px-8 py-24 max-w-3xl mx-auto">
+        <button
+          className="mb-6 text-[#eaff00] hover:underline"
+          onClick={() => setSelected(null)}
+        >
+          ← Torna al blog
+        </button>
+        <h2 className="text-3xl font-bold mb-2">{selected.TITOLO}</h2>
+        <div className="mb-2 text-neutral-400 text-sm">
+          {selected.CATEGORIE}
+          {selected.TAGS && <> · {selected.TAGS}</>}
+        </div>
+        {selected.IMMAGINI && (
+          <img
+            src={selected.IMMAGINI.split(",")[0]}
+            alt={selected.TITOLO}
+            className="mb-6 rounded-lg max-h-72 object-cover w-full"
+          />
+        )}
+        <div
+          className="prose prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: selected.CONTENUTO }}
+        />
+        <div className="mt-8 text-xs text-neutral-500">
+          SEO: {selected["SEO TITLE"]} — {selected["META DESCRIPTION"]}
+        </div>
+      </section>
+    );
+  }
+
+  // Mostra solo anteprima dei primi 2-3 articoli
+  const previewPosts = posts.slice(0, previewCount);
+
+  return (
+    <section id="blog" className="relative z-10 px-8 py-24 max-w-4xl mx-auto">
+      <h3 className="text-3xl font-bold mb-8 text-center">Dal nostro Blog</h3>
+      <div className="grid gap-8">
+        {previewPosts.map((post) => (
+          <article
+            key={post.SLUG}
+            className="border border-neutral-800 rounded-xl p-0 bg-neutral-900/70 hover:border-[#eaff00] transition flex flex-col sm:flex-row"
+            onClick={() => setSelected(post)}
+          >
+            {post.IMMAGINI && (
+              <img
+                src={post.IMMAGINI.split(",")[0]}
+                alt={post.TITOLO}
+                className="w-full sm:w-48 h-40 object-cover rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none bg-neutral-800"
+                loading="lazy"
+              />
+            )}
+            <div className="flex-1 p-6 flex flex-col justify-between">
+              <div>
+                <h4 className="text-xl font-bold mb-2 text-[#eaff00] leading-tight">
+                  {post.TITOLO}
+                </h4>
+                <div className="text-neutral-400 text-xs mb-2">
+                  {post.CATEGORIE}
+                  {post.TAGS && <> · {post.TAGS}</>}
+                </div>
+                <div
+                  className="text-neutral-300 text-sm mb-3"
+                  dangerouslySetInnerHTML={{
+                    __html: post["SHORT CONTENT"] || "",
+                  }}
+                />
+              </div>
+              <a
+                href={`/blog/${post.SLUG}`}
+                className="inline-block mt-2 text-[#eaff00] font-semibold hover:underline text-sm"
+              >
+                Leggi tutto →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="flex justify-center mt-10">
+        <a
+          href="/blog"
+          className="rounded-md font-semibold px-8 py-3 text-neutral-900"
+          style={{ background: "#eaff00" }}
+        >
+          Vai al blog
+        </a>
+      </div>
+    </section>
+  );
+}
