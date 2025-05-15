@@ -61,7 +61,7 @@ export default function Blog() {
         {previewPosts.map((post) => (
           <article
             key={post.SLUG}
-            className="border border-neutral-800 rounded-xl p-0 bg-neutral-900/70 hover:border-[#eaff00] transition flex flex-col sm:flex-row"
+            className="border border-neutral-800 rounded-xl p-0 bg-neutral-900/70 hover:border-[#eaff00] transition flex flex-col sm:flex-row cursor-pointer"
             onClick={() => setSelected(post)}
           >
             {post.IMMAGINI && (
@@ -88,12 +88,9 @@ export default function Blog() {
                   }}
                 />
               </div>
-              <a
-                href={`/blog/${post.SLUG}`}
-                className="inline-block mt-2 text-[#eaff00] font-semibold hover:underline text-sm"
-              >
+              <span className="inline-block mt-2 text-[#eaff00] font-semibold hover:underline text-sm">
                 Leggi tutto →
-              </a>
+              </span>
             </div>
           </article>
         ))}
