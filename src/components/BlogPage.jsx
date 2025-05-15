@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
@@ -19,6 +20,7 @@ export default function BlogPage() {
 
   return (
     <div className="bg-neutral-900 text-white font-sans min-h-screen">
+      <Header />
       <section className="relative z-10 px-8 py-24 max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Tutti gli articoli</h2>
         <div className="grid gap-8">
@@ -45,7 +47,7 @@ export default function BlogPage() {
                     {post.TAGS && <> · {post.TAGS}</>}
                   </div>
                   <div
-                    className="text-neutral-300 text-sm mb-3"
+                    className="prose prose-invert text-neutral-300 text-sm mb-3"
                     dangerouslySetInnerHTML={{
                       __html: post["SHORT CONTENT"] || "",
                     }}

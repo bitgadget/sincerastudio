@@ -167,9 +167,12 @@ export default function SinceraStudioLanding() {
             </div>
           )}
         </div>
-        <button className="hidden md:inline-flex items-center gap-2 rounded-full border border-neutral-700 px-6 py-2 text-sm hover:border-white/60 transition">
+        <a
+          href="#contatti"
+          className="hidden md:inline-flex items-center gap-2 rounded-full border border-neutral-700 px-6 py-2 text-sm hover:border-white/60 transition"
+        >
           Contattaci <ArrowUpRight size={16} />
-        </button>
+        </a>
       </header>
 
       {/* Hero */}
