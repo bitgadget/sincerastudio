@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import Workflow from "./components/Workflow";
 import Hero3D from "./components/Hero3D";
-import { useState } from "react";
+import Blog from "./components/Blog";
+import { useState, useEffect } from "react";
+import Papa from "papaparse";
 
 import {
   ArrowUpRight,
@@ -34,6 +36,19 @@ export default function SinceraStudioLanding() {
   const [lightboxImg, setLightboxImg] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("/blog.csv")
+      .then((res) => res.text())
+      .then((text) => {
+        Papa.parse(text, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => setPosts(results.data),
+        });
+      });
+  }, []);
 
   return (
     <main className="pt-24 min-h-screen scroll-smooth bg-neutral-900 text-white font-sans overflow-x-hidden selection:bg-[#bfff00]/30 selection:text-white">
@@ -66,6 +81,9 @@ export default function SinceraStudioLanding() {
           </a>
           <a href="#faq" className="hover:text-white/90 transition">
             FAQ
+          </a>
+          <a href="#blog" className="hover:text-white/90 transition">
+            Blog
           </a>
         </nav>
         {/* Mobile menu button */}
@@ -126,6 +144,13 @@ export default function SinceraStudioLanding() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     FAQ
+                  </a>
+                  <a
+                    href="#blog"
+                    className="py-2 hover:text-[#eaff00] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Blog
                   </a>
                   <button
                     className="py-2 text-right hover:text-[#eaff00] transition"
@@ -719,6 +744,9 @@ export default function SinceraStudioLanding() {
           ))}
         </div>
       </section>
+
+      {/* Blog */}
+      <Blog />
 
       {/* Footer */}
       <footer className="relative z-10 px-8 py-10 text-center text-neutral-600 text-sm">
