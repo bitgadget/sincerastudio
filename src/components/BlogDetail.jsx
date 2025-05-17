@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 import Header from "./Header";
+import { Helmet } from "react-helmet-async";
 
 export function BlogDetail() {
   const { slug } = useParams();
@@ -26,6 +27,10 @@ export function BlogDetail() {
 
   return (
     <div className="bg-neutral-900 text-white font-sans min-h-screen">
+      <Helmet>
+        <title>{post.TITOLO} | Sincera Studio</title>
+        <meta name="description" content={post["META DESCRIPTION"] || ""} />
+      </Helmet>
       <Header />
       <section className="relative z-10 px-8 py-24 max-w-3xl mx-auto">
         <Link to="/blog" className="mb-6 inline-block text-[#eaff00] hover:underline">
@@ -47,7 +52,15 @@ export function BlogDetail() {
           className="prose prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: post.CONTENUTO }}
         />
-        {/* Sezione SEO rimossa */}
+        <div className="flex justify-center mt-10">
+          <Link
+            to="/blog"
+            className="rounded-md font-semibold px-8 py-3 text-neutral-900"
+            style={{ background: "#eaff00" }}
+          >
+            Torna al blog
+          </Link>
+        </div>
       </section>
     </div>
   );
