@@ -25,9 +25,11 @@ export default function BlogPage() {
         <h2 className="text-3xl font-bold mb-8 text-center">Tutti gli articoli</h2>
         <div className="grid gap-8">
           {posts.map((post) => (
-            <article
+            <Link
+              to={`/blog/${post.SLUG}`}
               key={post.SLUG}
-              className="border border-neutral-800 rounded-xl p-0 bg-neutral-900/70 hover:border-[#eaff00] transition flex flex-col sm:flex-row"
+              className="border border-neutral-800 rounded-xl p-0 bg-neutral-900/70 hover:border-[#eaff00] transition flex flex-col sm:flex-row no-underline cursor-pointer group"
+              style={{ textDecoration: "none" }}
             >
               {post.IMMAGINI && (
                 <img
@@ -39,7 +41,7 @@ export default function BlogPage() {
               )}
               <div className="flex-1 p-6 flex flex-col justify-between">
                 <div>
-                  <h4 className="text-xl font-bold mb-2 text-[#eaff00] leading-tight">
+                  <h4 className="text-xl font-bold mb-2 text-[#eaff00] leading-tight group-hover:underline">
                     {post.TITOLO}
                   </h4>
                   <div className="text-neutral-400 text-xs mb-2">
@@ -53,14 +55,11 @@ export default function BlogPage() {
                     }}
                   />
                 </div>
-                <Link
-                  to={`/blog/${post.SLUG}`}
-                  className="inline-block mt-2 text-[#eaff00] font-semibold hover:underline text-sm"
-                >
+                <span className="inline-block mt-2 text-[#eaff00] font-semibold hover:underline text-sm">
                   Leggi tutto →
-                </Link>
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
         <div className="flex justify-center mt-10">

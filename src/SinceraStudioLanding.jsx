@@ -267,17 +267,17 @@ export default function SinceraStudioLanding() {
             },
             {
               title: "Stampa 3D professionale",
-              desc: "PLA, ABS, PETG, resina, metallo con risoluzione fino a 25µm",
+              desc: "PLA, PETG, TPU, ASA",
               icon: <Printer size={32} />,
             },
             {
               title: "Stampa 2D large-format",
-              desc: "Poster, adesivi, packaging e display fino a 1,5m di larghezza",
+              desc: "Poster, adesivi, packaging e display fino a 3m di larghezza",
               icon: <PackageSearch size={32} />,
             },
             {
               title: "Reverse engineering",
-              desc: "Scansione 3D ad alta definizione e ricostruzione CAD",
+              desc: "Scansione 3D e ricostruzione CAD",
               icon: <Lightbulb size={32} />,
             },
             {
@@ -323,84 +323,7 @@ export default function SinceraStudioLanding() {
         </div>
       </section>
 
-      {/* Workflow neon tech */}
-      <Workflow />
-
-      {/* Materiali */}
-      <section
-        id="materiali"
-        className="relative z-10 px-8 py-24 max-w-7xl mx-auto"
-      >
-        <motion.h3
-          className="text-3xl font-bold"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          Materiali principali
-        </motion.h3>
-        <motion.p
-          className="mt-4 text-neutral-400 max-w-2xl mx-auto"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          custom={2}
-          viewport={{ once: true }}
-        >
-          Selezioniamo solo materiali di alta qualità per garantire resistenza, precisione e finiture professionali su ogni progetto.
-        </motion.p>
-        <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {[
-            {
-              name: "PLA",
-              icon: "🌱",
-              desc: "Biodegradabile, ottimo per prototipi e modelli estetici.",
-            },
-            {
-              name: "PETG",
-              icon: "🧪",
-              desc: "Resistente, flessibile, ideale per parti funzionali.",
-            },
-            {
-              name: "TPU",
-              icon: "🦾",
-              desc: "Elastico, perfetto per componenti flessibili e antiurto.",
-            },
-            {
-              name: "Altri materiali",
-              icon: "🧩",
-              desc: "Metallo, nylon, compositi e altro su richiesta.",
-              center: true,
-            },
-          ].map((mat, i, arr) => {
-            // Centra la card se è l'ultima e la riga è dispari
-            const isLast = i === arr.length - 1;
-            const isOdd = arr.length % 3 !== 0;
-            const gridClass =
-              isLast && isOdd
-                ? "sm:col-span-2 md:col-span-1 md:col-start-2"
-                : "";
-            return (
-              <motion.div
-                key={mat.name}
-                className={`rounded-2xl border border-neutral-800 p-6 bg-neutral-900/70 hover:shadow-[0_0_16px_#eaff00cc] hover:border-[#eaff00] transition text-center flex flex-col items-center ${gridClass}`}
-                variants={stagger}
-                initial="hidden"
-                whileInView="visible"
-                custom={i + 1}
-                viewport={{ once: true }}
-              >
-                <div className="text-4xl mb-3 mx-auto">{mat.icon}</div>
-                <div className="font-semibold text-lg text-[#eaff00]">{mat.name}</div>
-                <div className="mt-2 text-neutral-400 text-sm">{mat.desc}</div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Portfolio Placeholder */}
+      {/* Portfolio - SPOSTATO QUI */}
       <section
         id="portfolio"
         className="relative z-10 px-8 py-24 max-w-5xl mx-auto text-center"
@@ -508,6 +431,83 @@ export default function SinceraStudioLanding() {
         </div>
       </section>
 
+      {/* Workflow neon tech - ORA DOPO IL PORTFOLIO */}
+      <Workflow />
+
+      {/* Materiali */}
+      <section
+        id="materiali"
+        className="relative z-10 px-8 py-24 max-w-7xl mx-auto"
+      >
+        <motion.h3
+          className="text-3xl font-bold"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          Materiali principali
+        </motion.h3>
+        <motion.p
+          className="mt-4 text-neutral-400 max-w-2xl mx-auto"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          custom={2}
+          viewport={{ once: true }}
+        >
+          Selezioniamo solo materiali di alta qualità per garantire resistenza, precisione e finiture professionali su ogni progetto.
+        </motion.p>
+        <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {[
+            {
+              name: "PLA",
+              icon: "🌱",
+              desc: "Biodegradabile, ottimo per prototipi e modelli estetici.",
+            },
+            {
+              name: "PETG",
+              icon: "🧪",
+              desc: "Resistente, flessibile, ideale per parti funzionali.",
+            },
+            {
+              name: "TPU",
+              icon: "🦾",
+              desc: "Elastico, perfetto per componenti flessibili e antiurto.",
+            },
+            {
+              name: "Altri materiali",
+              icon: "🧩",
+              desc: "Metallo, nylon, compositi e altro su richiesta.",
+              center: true,
+            },
+          ].map((mat, i, arr) => {
+            // Centra la card se è l'ultima e la riga è dispari
+            const isLast = i === arr.length - 1;
+            const isOdd = arr.length % 3 !== 0;
+            const gridClass =
+              isLast && isOdd
+                ? "sm:col-span-2 md:col-span-1 md:col-start-2"
+                : "";
+            return (
+              <motion.div
+                key={mat.name}
+                className={`rounded-2xl border border-neutral-800 p-6 bg-neutral-900/70 hover:shadow-[0_0_16px_#eaff00cc] hover:border-[#eaff00] transition text-center flex flex-col items-center ${gridClass}`}
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 1}
+                viewport={{ once: true }}
+              >
+                <div className="text-4xl mb-3 mx-auto">{mat.icon}</div>
+                <div className="font-semibold text-lg text-[#eaff00]">{mat.name}</div>
+                <div className="mt-2 text-neutral-400 text-sm">{mat.desc}</div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section
         id="testimonials"
@@ -581,105 +581,36 @@ export default function SinceraStudioLanding() {
           custom={2}
           viewport={{ once: true }}
         >
-          Dal concept alla produzione: siamo pronti ad ascoltare la tua idea e trasformarla in realtà.
+          Vuoi ricevere un <b>preventivo gratuito</b> o semplicemente maggiori informazioni? Contattaci senza impegno tramite email, WhatsApp o Telegram: ti risponderemo il prima possibile!
         </motion.p>
-        <div className="flex justify-center mb-12">
-          <motion.div
-            className="w-full max-w-xl rounded-2xl border-2 border-[#eaff00] shadow-[0_0_32px_#eaff00cc] bg-neutral-900/80 p-10 flex flex-col items-center transition hover:shadow-[0_0_56px_#eaff00]"
-            whileHover={{ scale: 1.03 }}
-          >
-            <div className="mb-4 text-5xl text-[#eaff00]">
-              <PackageSearch size={56} strokeWidth={2.5} />
-            </div>
-            <div className="font-semibold text-2xl mb-4">Richiedi un preventivo</div>
-            <button
-              onClick={() => setShowModal(true)}
-              className="mt-2 rounded-md font-semibold px-10 py-4 text-xl text-neutral-900 bg-[#eaff00] shadow-[0_0_16px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_32px_#eaff00] transition"
-            >
-              Compila il form
-            </button>
-          </motion.div>
-        </div>
-        {/* Contatto diretto */}
         <div className="mb-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href="mailto:info@sincerastudio.it"
+            href="mailto:lorenzo@improntasnc.com"
             className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#eaff00] text-neutral-900 font-semibold shadow-[0_0_12px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_24px_#eaff00] transition"
           >
             <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 7 8-7V18z"/></svg>
-            Email
+            lorenzo@improntasnc.com
           </a>
           <a
-            href="https://wa.me/391234567890"
+            href="https://wa.me/393515123688"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#25D366] text-neutral-900 font-semibold shadow-[0_0_12px_#25D366cc] hover:bg-[#1ebe57] hover:shadow-[0_0_24px_#25D366] transition"
           >
-            WhatsApp
+            WhatsApp: +39 351 5123688
           </a>
           <a
-            href="https://t.me/tuonicktelegram"
+            href="https://t.me/bitgadgetstore"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#229ED9] text-white font-semibold shadow-[0_0_12px_#229ED9cc] hover:bg-[#1787b7] hover:shadow-[0_0_24px_#229ED9] transition"
           >
-            Telegram
+            Telegram: @bitgadgetstore
           </a>
         </div>
-        {/* CTA finale */}
         <div className="mt-12 text-neutral-400 text-base">
           Non sai da dove iniziare? <span className="text-[#eaff00] font-semibold">Scrivici anche solo per un consiglio!</span>
         </div>
-        {/* Modal Form Preventivo */}
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setShowModal(false)}>
-            <form
-              className="bg-neutral-900 rounded-xl p-8 max-w-md w-full border-2 border-[#eaff00] shadow-[0_0_32px_#eaff00cc] relative"
-              onClick={e => e.stopPropagation()}
-            >
-              <button
-                className="absolute top-3 right-4 text-2xl text-[#eaff00] font-bold"
-                onClick={() => setShowModal(false)}
-                type="button"
-              >
-                &times;
-              </button>
-              <div className="mb-4 text-xl font-bold text-[#eaff00]">Richiedi un preventivo</div>
-              <input
-                type="text"
-                name="nome"
-                placeholder="Nome"
-                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
-                required
-              />
-              <textarea
-                name="messaggio"
-                placeholder="Descrivi la tua richiesta"
-                rows={4}
-                className="w-full mb-3 px-4 py-2 rounded bg-neutral-800 border border-neutral-700 text-white"
-                required
-              />
-              <input
-                type="file"
-                name="allegato"
-                className="w-full mb-3 text-neutral-400"
-              />
-              <button
-                type="submit"
-                className="w-full rounded-md font-semibold px-6 py-2 text-neutral-900 bg-[#eaff00] shadow-[0_0_12px_#eaff00cc] hover:bg-[#d4e800] hover:shadow-[0_0_24px_#eaff00] transition"
-              >
-                Invia richiesta
-              </button>
-            </form>
-          </div>
-        )}
       </section>
 
       {/* Domande frequenti SPOSTATE QUI */}
