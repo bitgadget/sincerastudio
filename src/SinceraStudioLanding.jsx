@@ -62,9 +62,9 @@ export default function SinceraStudioLanding() {
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-neutral-900 bg-opacity-95 border-b border-neutral-800">
-        <h1 className="font-script text-4xl" style={{ color: NEON }}>
+        <h1 className="font-script text-4xl flex items-end gap-2" style={{ color: NEON }}>
           SINCERA
-          <span className="text-base block -mt-2 font-normal tracking-widest text-white/90">
+          <span className="text-base font-normal tracking-widest text-white/90" style={{ color: "#fff" }}>
             STUDIO
           </span>
         </h1>
