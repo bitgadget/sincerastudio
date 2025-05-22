@@ -152,16 +152,14 @@ export default function SinceraStudioLanding() {
                   >
                     Blog
                   </a>
-                  <button
+                  <a
+                    href="#contatti"
                     className="py-2 text-right hover:text-[#eaff00] transition"
-                    style={{ background: "none", border: "none" }}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      setShowModal(true);
-                    }}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    Preventivo
-                  </button>
+                    Contatti
+                  </a>
+                  
                 </nav>
               </div>
             </div>
