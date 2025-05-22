@@ -186,10 +186,8 @@ export default function SinceraStudioLanding() {
           animate="visible"
           custom={1}
         >
-          Progettiamo il{" "}
-          <span className="neon-blink">futuro</span>
-          <br /> in <span className="neon-blink">2D</span> e{" "}
-          <span className="neon-blink">3D</span>
+          Progettiamo <span className="text-white">il futuro</span>
+          <br /> in <span className="neon-blink">2D</span> e <span className="neon-blink">3D</span>
         </motion.h2>
 
         <div className="my-10 w-full flex justify-center">
