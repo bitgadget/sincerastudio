@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sincerastudio.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#servizi</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#portfolio</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#materiali</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#faq</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#blog</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#contatti</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#workflow</loc>
+  </url>
+  <url>
+    <loc>https://sincerastudio.com/#testimonials</loc>
+  </url>
+</urlset>
