@@ -85,6 +85,16 @@ export default function SinceraStudioLanding() {
           <a href="#blog" className="hover:text-white/90 transition">
             Blog
           </a>
+          <a
+            href="https://www.instagram.com/sincera3d/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#eaff00] transition flex items-center gap-1"
+            aria-label="Instagram"
+          >
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.13.62a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0z"/></svg>
+            Instagram
+          </a>
         </nav>
         {/* Mobile menu button */}
         <div className="md:hidden">
@@ -159,7 +169,17 @@ export default function SinceraStudioLanding() {
                   >
                     Contatti
                   </a>
-                  
+                  <a
+                    href="https://www.instagram.com/sincera3d/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 hover:text-[#eaff00] transition flex items-center gap-1"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Instagram"
+                  >
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.13.62a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0z"/></svg>
+                    Instagram
+                  </a>
                 </nav>
               </div>
             </div>
@@ -602,6 +622,30 @@ export default function SinceraStudioLanding() {
             className="inline-flex items-center gap-2 rounded-md px-6 py-3 bg-[#229ED9] text-white font-semibold shadow-[0_0_12px_#229ED9cc] hover:bg-[#1787b7] hover:shadow-[0_0_24px_#229ED9] transition"
           >
             Telegram: @bitgadgetstore
+          </a>
+        </div>
+        <div className="mt-4 flex flex-col items-center justify-center">
+          <a
+            href="https://www.instagram.com/sincera3d/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 px-5 py-3 rounded-lg bg-neutral-800/80 border border-[#eaff00] hover:border-[#fff] transition shadow"
+            aria-label="Profilo Instagram Sincera Studio"
+            style={{ textDecoration: "none" }}
+          >
+            <img
+              src="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png"
+              alt="Logo Instagram"
+              className="w-10 h-10 rounded-full bg-white"
+              loading="lazy"
+              style={{ border: "2px solid #eaff00" }}
+            />
+            <div className="flex flex-col">
+              <span className="font-semibold text-base text-white flex items-center gap-2">
+                sincera3d
+              </span>
+              <span className="text-neutral-400 text-xs">Segui su Instagram</span>
+            </div>
           </a>
         </div>
         <div className="mt-12 text-neutral-400 text-base">
